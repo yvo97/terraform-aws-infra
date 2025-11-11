@@ -1,0 +1,21 @@
+# Fichiers Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform.lock.hcl
+
+# Fichiers sensibles
+*.pem
+*.key
+terraform.tfvars
+
+# Fichiers temporaires
+*.log
+*.tmp
+tfplan
+destroyplan
+
+# Fichiers d'environnement
+.env
+.aws
