@@ -107,7 +107,7 @@ terraform-aws-infra/
 │   │   ├── variables.tf
 │   │   └── terraform.tfvars
 │   │
-│   └── prod/                   # Environnement de production
+│   └── prod/                   # Environnement de prod
 │       ├── main.tf
 │       ├── variables.tf
 │       └── terraform.tfvars
