@@ -76,47 +76,10 @@ Ce projet Terraform provisionne une infrastructure AWS complète et modulaire co
 
 ## 📁 Structure du Projet
 
-terraform-aws-infra/
-├── main.tf                  → Configuration principale du projet
-├── variables.tf             → Définition des variables globales
-├── outputs.tf               → Sorties Terraform (VPC ID, IP, etc.)
-├── providers.tf             → Configuration des providers (AWS)
-├── terraform.tfvars.example → Exemple de configuration des variables
-├── userdata.sh              → Script d'initialisation des instances EC2
-
-├── modules/                 → 📦 Modules réutilisables
-│   ├── vpc/
-│   │   ├── main.tf
-│   │   ├── variables.tf
-│   │   └── outputs.tf
-│   │
-│   ├── ec2/
-│   │   ├── main.tf
-│   │   ├── variables.tf
-│   │   └── outputs.tf
-│   │
-│   └── security_groups/
-│       ├── main.tf
-│       ├── variables.tf
-│       └── outputs.tf
-
-├── environments/            → 🌍 Configurations par environnement
-│   ├── dev/
-│   │   ├── main.tf
-│   │   ├── variables.tf
-│   │   └── terraform.tfvars
-│   │
-│   └── prod/
-│       ├── main.tf
-│       ├── variables.tf
-│       └── terraform.tfvars
-
-└── scripts/                 → ⚙️ Scripts d'automatisation
-    ├── deploy.sh            → Script de déploiement
-    └── destroy.sh           → Script de suppression complète
 
 
 
+<p align="center"> <img src="./arbo.png" alt="Schéma d'infrastructure" width="600"/> </p>
 
 
 
