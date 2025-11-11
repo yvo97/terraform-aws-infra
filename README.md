@@ -121,6 +121,7 @@ terraform-aws-infra/
 
 
 
+
 ## 🚀 Workflows de Déploiement
 
 1️⃣  Cloner le repository
@@ -150,10 +151,7 @@ terraform-aws-infra/
 8️⃣  Supprimer l’infrastructure (si nécessaire)
      terraform destroy -auto-approve
 
-Astuce : tu peux aussi automatiser ces étapes via les scripts du dossier scripts/ :
 
-./scripts/deploy.sh    # Déploiement complet
-./scripts/destroy.sh   # Nettoyage complet
 
 
 
