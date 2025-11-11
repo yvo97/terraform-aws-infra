@@ -77,44 +77,44 @@ Ce projet Terraform provisionne une infrastructure AWS complète et modulaire co
 ## 📁 Structure du Projet
 
 terraform-aws-infra/
-│
-├── main.tf                     # Configuration principale du projet
-├── variables.tf                # Définition des variables globales
-├── outputs.tf                  # Sorties Terraform (VPC ID, IP, etc.)
-├── providers.tf                # Configuration des providers (AWS)
-├── terraform.tfvars.example    # Exemple de configuration des variables
-├── userdata.sh                 # Script d'initialisation des instances EC2
-│
-├── modules/                    # 📦 Modules réutilisables
-│   ├── vpc/                    # Module VPC
+├── main.tf                  → Configuration principale du projet
+├── variables.tf             → Définition des variables globales
+├── outputs.tf               → Sorties Terraform (VPC ID, IP, etc.)
+├── providers.tf             → Configuration des providers (AWS)
+├── terraform.tfvars.example → Exemple de configuration des variables
+├── userdata.sh              → Script d'initialisation des instances EC2
+
+├── modules/                 → 📦 Modules réutilisables
+│   ├── vpc/
 │   │   ├── main.tf
 │   │   ├── variables.tf
 │   │   └── outputs.tf
 │   │
-│   ├── ec2/                    # Module EC2 (instances dev et prod)
+│   ├── ec2/
 │   │   ├── main.tf
 │   │   ├── variables.tf
 │   │   └── outputs.tf
 │   │
-│   └── security_groups/        # Module de gestion des Security Groups
+│   └── security_groups/
 │       ├── main.tf
 │       ├── variables.tf
 │       └── outputs.tf
-│
-├── environments/               # 🌍 Configurations par environnement
-│   ├── dev/                    # Environnement de développement
+
+├── environments/            → 🌍 Configurations par environnement
+│   ├── dev/
 │   │   ├── main.tf
 │   │   ├── variables.tf
 │   │   └── terraform.tfvars
 │   │
-│   └── prod/                   # Environnement de prod
+│   └── prod/
 │       ├── main.tf
 │       ├── variables.tf
 │       └── terraform.tfvars
-│
-└── scripts/                    # ⚙️ Scripts d'automatisation
-    ├── deploy.sh               # Script de déploiement de l’infrastructure
-    └── destroy.sh              # Script de suppression complète des ressources
+
+└── scripts/                 → ⚙️ Scripts d'automatisation
+    ├── deploy.sh            → Script de déploiement
+    └── destroy.sh           → Script de suppression complète
+
 
 
 
