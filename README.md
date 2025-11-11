@@ -55,6 +55,8 @@ Ce projet Terraform provisionne une infrastructure AWS complète et modulaire co
 
 
 
+
+
 ## ⚙️ Prérequis
 
 - Outils Requis
@@ -69,67 +71,89 @@ Ce projet Terraform provisionne une infrastructure AWS complète et modulaire co
 
 
 
+
+
+
 ## 📁 Structure du Projet
 
 terraform-aws-infra/
 │
-├── main.tf                    # Configuration principale
-├── variables.tf              # Variables du projet
-├── outputs.tf                # Sorties Terraform
-├── providers.tf              # Configuration des providers
-├── terraform.tfvars.example  # Exemple de configuration
-├── userdata.sh              # Script d'initialisation EC2
+├── main.tf                     # Configuration principale du projet
+├── variables.tf                # Définition des variables globales
+├── outputs.tf                  # Sorties Terraform (VPC ID, IP, etc.)
+├── providers.tf                # Configuration des providers (AWS)
+├── terraform.tfvars.example    # Exemple de configuration des variables
+├── userdata.sh                 # Script d'initialisation des instances EC2
 │
-├── modules/                  # Modules réutilisables
-│   ├── vpc/                 # Module VPC
+├── modules/                    # 📦 Modules réutilisables
+│   ├── vpc/                    # Module VPC
 │   │   ├── main.tf
 │   │   ├── variables.tf
 │   │   └── outputs.tf
-│   ├── ec2/                 # Module EC2
+│   │
+│   ├── ec2/                    # Module EC2 (instances dev et prod)
 │   │   ├── main.tf
 │   │   ├── variables.tf
 │   │   └── outputs.tf
-│   └── security_groups/     # Module Security Groups
+│   │
+│   └── security_groups/        # Module de gestion des Security Groups
 │       ├── main.tf
 │       ├── variables.tf
 │       └── outputs.tf
 │
-├── environments/            # Configurations par environnement
-│   ├── dev/                # Environnement de développement
+├── environments/               # 🌍 Configurations par environnement
+│   ├── dev/                    # Environnement de développement
 │   │   ├── main.tf
 │   │   ├── variables.tf
 │   │   └── terraform.tfvars
-│   └── prod/               # Environnement de production
+│   │
+│   └── prod/                   # Environnement de production
 │       ├── main.tf
 │       ├── variables.tf
 │       └── terraform.tfvars
 │
-└── scripts/                # Scripts d'automatisation
-    ├── deploy.sh           # Script de déploiement
-    └── destroy.sh          # Script de nettoyage
+└── scripts/                    # ⚙️ Scripts d'automatisation
+    ├── deploy.sh               # Script de déploiement de l’infrastructure
+    └── destroy.sh              # Script de suppression complète des ressources
+
+
+
 
 
 
 ## 🚀 Workflows de Déploiement
 
-Workflow de Dév/Prod
+1️⃣  Cloner le repository
+     git clone https://github.com/ton-utilisateur/terraform-aws-infra.git
+     cd terraform-aws-infra
 
-1. Clone du repository
-   ↓
-2. Configuration des variables
-   ↓
-3. Création de la key pair
-   ↓
-4. Positionnement sur le path Dev/Prod , ensuite Terraform init
-   ↓
-5. Terraform validate
-   ↓
-6. Terrafor apply 
-   ↓
-7. Déploiement automatique dans AWS
-   ↓
-8. Tests de validation
+2️⃣  Configurer les variables
+     - Copier le fichier `terraform.tfvars.example` vers `terraform.tfvars`
+     - Modifier les valeurs selon ton environnement
 
+3️⃣  Créer la Key Pair AWS
+     - Créer une clé dans la console AWS (ex: Terraform.pem)
+     - Placer son nom dans `variables.tf` ou `terraform.tfvars`
+
+4️⃣  Se positionner sur l’environnement cible
+     cd environments/dev    # ou cd environments/prod
+
+5️⃣  Initialiser Terraform
+     terraform init
+
+6️⃣  Valider la configuration
+     terraform validate
+
+7️⃣  Appliquer le déploiement
+     terraform apply -auto-approve
+
+8️⃣  Supprimer l’infrastructure (si nécessaire)
+     terraform destroy -auto-approve
+
+Astuce : tu peux aussi automatiser ces étapes via les scripts du dossier scripts/ :
+
+./scripts/deploy.sh    # Déploiement complet
+./scripts/destroy.sh   # Nettoyage complet
 
 
 
