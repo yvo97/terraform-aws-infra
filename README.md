@@ -188,47 +188,48 @@ Bonnes Pratiques Implémentées
 
 
 
+```bash
 terraform-aws-infra/
 │
-├── 📄 README.md                           # Documentation principale
-├── 📄 .gitignore                          # Fichiers à ignorer par Git
-├── 📄 LICENSE                             # Licence du projet
+├── README.md                           # Documentation principale
+├── .gitignore                          # Fichiers à ignorer par Git
+├── LICENSE                             # Licence du projet
 │
-├── 🔧 backend/                            # Configuration Backend S3 Remote
-│   ├── 📄 main.tf                         # Création buckets S3 + tables DynamoDB
-│   ├── 📄 variables.tf                    # Variables pour dev/prod
-│   ├── 📄 outputs.tf                      # Outputs des ressources backend
+├── backend/                            # Configuration Backend S3 Remote
+│   ├── main.tf                         # Création buckets S3 + tables DynamoDB
+│   ├── variables.tf                    # Variables pour dev/prod
+│   ├── outputs.tf                      # Outputs des ressources backend
 │   └──
 │
-├── 🌍 environments/
-│   ├── 🛠️ dev/                           # Environnement développement
-│   │   ├── 📄 main.tf                     # Configuration infrastructure dev
-│   │   ├── 📄 backend.tf                  # Backend S3 spécifique à dev
-│   │   ├── 📄 providers.tf                # Providers Terraform
-│   │   ├── 📄 variables.tf                # Variables environnement dev
-│   │   ├── 📄 outputs.tf                  # Outputs spécifiques dev
-│   │   └── 📄 terraform.tfvars            # Valeurs variables dev
+├── environments/
+│   ├── dev/                            # Environnement développement
+│   │   ├── main.tf                     # Configuration infrastructure dev
+│   │   ├── backend.tf                  # Backend S3 spécifique à dev
+│   │   ├── providers.tf                # Providers Terraform
+│   │   ├── variables.tf                # Variables environnement dev
+│   │   ├── outputs.tf                  # Outputs spécifiques dev
+│   │   └── terraform.tfvars            # Valeurs variables dev
 │   │
-│   └── 🚀 prod/                           # Environnement production
-│       ├── 📄 main.tf                     # Configuration infrastructure prod
-│       ├── 📄 backend.tf                  # Backend S3 spécifique à prod
-│       ├── 📄 providers.tf                # Providers Terraform
-│       ├── 📄 variables.tf                # Variables environnement prod
-│       ├── 📄 outputs.tf                  # Outputs spécifiques prod
-│       └── 📄 terraform.tfvars            # Valeurs variables prod
+│   └── prod/                           # Environnement production
+│       ├── main.tf                     # Configuration infrastructure prod
+│       ├── backend.tf                  # Backend S3 spécifique à prod
+│       ├── providers.tf                # Providers Terraform
+│       ├── variables.tf                # Variables environnement prod
+│       ├── outputs.tf                  # Outputs spécifiques prod
+│       └── terraform.tfvars            # Valeurs variables prod
 │
-└── 🧩 modules/                             # Modules Terraform réutilisables
-    ├── 🌐 vpc/                            # Module VPC
-    │   ├── 📄 main.tf                     # VPC, subnets, IGW, route tables
-    │   ├── 📄 variables.tf                # Variables module VPC
-    │   └── 📄 outputs.tf                  # Outputs module VPC
+└── modules/                            # Modules Terraform réutilisables
+    ├── vpc/                            # Module VPC
+    │   ├── main.tf                     # VPC, subnets, IGW, route tables
+    │   ├── variables.tf                # Variables module VPC
+    │   └── outputs.tf                  # Outputs module VPC
     │
-    ├── 💻 ec2/                            # Module EC2
-    │   ├── 📄 main.tf                     # Instances EC2, AMI, userdata
-    │   ├── 📄 variables.tf                # Variables module EC2
-    │   └── 📄 outputs.tf                  # Outputs module EC2
+    ├── ec2/                            # Module EC2
+    │   ├── main.tf                     # Instances EC2, AMI, userdata
+    │   ├── variables.tf                # Variables module EC2
+    │   └── outputs.tf                  # Outputs module EC2
     │
-    └── 🔒 security_groups/                # Module Security Groups
-        ├── 📄 main.tf                     # Security Groups rules
-        ├── 📄 variables.tf                # Variables module SG
-        └── 📄 outputs.tf                  # Outputs module SG
+    └── security_groups/                # Module Security Groups
+        ├── main.tf                     # Security Groups rules
+        ├── variables.tf                # Variables module SG
+        └── outputs.tf                  # Outputs module SG
