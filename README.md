@@ -70,6 +70,59 @@ Ce projet Terraform provisionne une infrastructure AWS complète et modulaire co
 - SSH Key Pair pour accéder aux instances
 
 
+# 🔐 Backend Terraform (S3 + DynamoDB)
+
+Ce projet utilise un **backend distant sécurisé**, séparé pour chaque
+environnement :
+
+### ✔ State stocké dans S3
+
+### ✔ Verrouillage du state via DynamoDB
+
+### ✔ Pas de conflit entre dev et prod
+
+### ✔ Pratique professionnelle standard DevOps/SRE
+
+## 🧩 Architecture du Backend
+
+  ---------------------------------------------------------------------------------------------------------------
+  Environnement         S3 Bucket                            DynamoDB Table                            Rôle
+  --------------------- ------------------------------------ ----------------------------------------- ----------
+  **dev**               `projectname-terraform-state-dev`    `projectname-terraform-state-lock-dev`    Stockage
+                                                                                                       du state
+                                                                                                       dev
+
+  **prod**              `projectname-terraform-state-prod`   `projectname-terraform-state-lock-prod`   Stockage
+                                                                                                       du state
+                                                                                                       prod
+  ---------------------------------------------------------------------------------------------------------------
+
+## 🔄 Fonctionnement
+
+### 📌 Quand tu es dans `environments/dev` :
+
+    terraform init
+    terraform apply
+
+➡ Le state est stocké dans le bucket **dev**\
+➡ Le lock est géré dans la table **dev**
+
+### 📌 Quand tu es dans `environments/prod` :
+
+    terraform init
+    terraform apply
+
+➡ Le state est stocké dans le bucket **prod**\
+➡ Le lock est géré dans la table **prod**
+
+Cela garantit :
+
+-   aucun conflit entre les environnements\
+-   sécurité renforcée\
+-   travail en équipe sans risque de corruption du state
+
+
+
 
 
 
