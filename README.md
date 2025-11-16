@@ -172,7 +172,7 @@ terraform-aws-infra/
         ├── main.tf                     # Security Groups rules
         ├── variables.tf                # Variables module SG
         └── outputs.tf                  # Outputs module SG
-
+```
 
 
 
