@@ -70,6 +70,56 @@ Ce projet Terraform provisionne une infrastructure AWS complète et modulaire co
 - SSH Key Pair pour accéder aux instances
 
 
+## 🔐 Backend Terraform (S3 + DynamoDB)
+
+Ce projet utilise un **backend distant sécurisé**, séparé pour chaque
+environnement :
+
+### ✔ State stocké dans S3
+
+### ✔ Verrouillage du state via DynamoDB
+
+### ✔ Pas de conflit entre dev et prod
+
+### ✔ Pratique professionnelle standard DevOps/SRE
+
+
+## 🧩 Architecture du Backend
+
+ | Environnement | Bucket S3                         | DynamoDB Table                          | Rôle                                                    |
+|--------------|-----------------------------------|-----------------------------------------|---------------------------------------------------------|
+| **dev**      | `terraform-state-dev` | `projectname-terraform-state-lock-dev`  | Stockage du state pour l’environnement de développement |
+| **prod**     | `terraform-state-prod`| `projectname-terraform-state-lock-prod` | Stockage du state pour l’environnement de production    |
+
+
+## 🔄 Fonctionnement
+
+### 📌 Quand tu es dans `environments/dev` :
+
+    terraform init
+    terraform validate
+    terraform apply
+
+➡ Le state est stocké dans le bucket **dev**\
+➡ Le lock est géré dans la table **dev**
+
+### 📌 Quand tu es dans `environments/prod` :
+
+    terraform init
+    terraform validate
+    terraform apply
+
+➡ Le state est stocké dans le bucket **prod**\
+➡ Le lock est géré dans la table **prod**
+
+Cela garantit :
+
+-   aucun conflit entre les environnements\
+-   sécurité renforcée\
+-   travail en équipe sans risque de corruption du state
+
+
+
 
 
 
@@ -77,9 +127,53 @@ Ce projet Terraform provisionne une infrastructure AWS complète et modulaire co
 ## 📁 Structure du Projet
 
 
+```bash
+terraform-aws-infra/
+│
+├── README.md                           # Documentation principale
+├── .gitignore                          # Fichiers à ignorer par Git
+├── LICENSE                             # Licence du projet
+│
+├── backend/                            # Configuration Backend S3 Remote
+│   ├── main.tf                         # Création buckets S3 + tables DynamoDB
+│   ├── variables.tf                    # Variables pour dev/prod
+│   ├── outputs.tf                      # Outputs des ressources backend
+│   └──
+│
+├── environments/
+│   ├── dev/                            # Environnement développement
+│   │   ├── main.tf                     # Configuration infrastructure dev
+│   │   ├── backend.tf                  # Backend S3 spécifique à dev
+│   │   ├── providers.tf                # Providers Terraform
+│   │   ├── variables.tf                # Variables environnement dev
+│   │   ├── outputs.tf                  # Outputs spécifiques dev
+│   │   └── terraform.tfvars            # Valeurs variables dev
+│   │
+│   └── prod/                           # Environnement production
+│       ├── main.tf                     # Configuration infrastructure prod
+│       ├── backend.tf                  # Backend S3 spécifique à prod
+│       ├── providers.tf                # Providers Terraform
+│       ├── variables.tf                # Variables environnement prod
+│       ├── outputs.tf                  # Outputs spécifiques prod
+│       └── terraform.tfvars            # Valeurs variables prod
+│
+└── modules/                            # Modules Terraform réutilisables
+    ├── vpc/                            # Module VPC
+    │   ├── main.tf                     # VPC, subnets, IGW, route tables
+    │   ├── variables.tf                # Variables module VPC
+    │   └── outputs.tf                  # Outputs module VPC
+    │
+    ├── ec2/                            # Module EC2
+    │   ├── main.tf                     # Instances EC2, AMI, userdata
+    │   ├── variables.tf                # Variables module EC2
+    │   └── outputs.tf                  # Outputs module EC2
+    │
+    └── security_groups/                # Module Security Groups
+        ├── main.tf                     # Security Groups rules
+        ├── variables.tf                # Variables module SG
+        └── outputs.tf                  # Outputs module SG
+```
 
-
-<p align="center"> <img src="./arbo.png" alt="Schéma d'infrastructure" width="600"/> </p>
 
 
 
@@ -134,3 +228,7 @@ Bonnes Pratiques Implémentées
 ✅ Load Balancer sécurisé - Terminaison TLS possible
 
 ✅ Tags de sécurité - Identification claire des ressources
+
+
+
+
