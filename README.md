@@ -86,17 +86,11 @@ environnement :
 
 ## 🧩 Architecture du Backend
 
-  ---------------------------------------------------------------------------------------------------------------
-  Environnement         S3 Bucket                            DynamoDB Table                            Rôle
-  --------------------- ------------------------------------ ----------------------------------------- ----------
-  **dev**               `projectname-terraform-state-dev`    `projectname-terraform-state-lock-dev`    Stockage
-                                                                                                       du state
-                                                                                                       dev
+ | Environnement | Bucket S3                         | DynamoDB Table                          | Rôle                                                    |
+|--------------|-----------------------------------|-----------------------------------------|---------------------------------------------------------|
+| **dev**      | `terraform-state-dev` | `projectname-terraform-state-lock-dev`  | Stockage du state pour l’environnement de développement |
+| **prod**     | `terraform-state-prod`| `projectname-terraform-state-lock-prod` | Stockage du state pour l’environnement de production    |
 
-  **prod**              `projectname-terraform-state-prod`   `projectname-terraform-state-lock-prod`   Stockage
-                                                                                                       du state
-                                                                                                       prod
-  ---------------------------------------------------------------------------------------------------------------
 
 ## 🔄 Fonctionnement
 
