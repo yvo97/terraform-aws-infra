@@ -97,6 +97,7 @@ environnement :
 ### 📌 Quand tu es dans `environments/dev` :
 
     terraform init
+    terraform validate
     terraform apply
 
 ➡ Le state est stocké dans le bucket **dev**\
@@ -105,6 +106,7 @@ environnement :
 ### 📌 Quand tu es dans `environments/prod` :
 
     terraform init
+    terraform validate
     terraform apply
 
 ➡ Le state est stocké dans le bucket **prod**\
