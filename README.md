@@ -70,7 +70,7 @@ Ce projet Terraform provisionne une infrastructure AWS complète et modulaire co
 - SSH Key Pair pour accéder aux instances
 
 
-# 🔐 Backend Terraform (S3 + DynamoDB)
+## 🔐 Backend Terraform (S3 + DynamoDB)
 
 Ce projet utilise un **backend distant sécurisé**, séparé pour chaque
 environnement :
@@ -82,6 +82,7 @@ environnement :
 ### ✔ Pas de conflit entre dev et prod
 
 ### ✔ Pratique professionnelle standard DevOps/SRE
+
 
 ## 🧩 Architecture du Backend
 
